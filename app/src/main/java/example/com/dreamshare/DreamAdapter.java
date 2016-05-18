@@ -44,12 +44,12 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         }
 
         // Lookup view for data population
-        TextView tvUser = (TextView) convertView.findViewById(R.id.tvUser);
+        TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
         TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
         TextView tvDate = (TextView) convertView.findViewById(R.id.tvDate);
 
         // Populate the data into the template view using the data object
-        tvUser.setText(dream.getUser());
+        tvUsername.setText(dream.getUsername());
         tvDescription.setText(dream.getDescription());
         tvDate.setText(dream.getDate());
 

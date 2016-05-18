@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import butterknife.ButterKnife;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // ButterKnife generates code to perform view look-ups
         // and configure listeners into methods, etc.
         // https://github.com/JakeWharton/butterknife
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
     }
 
     // AsyncTask (do not perform networking operation on the main thread)
@@ -106,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
                     dreamJson = jsonArray.getJSONObject(i);
 
                     String key = dreamJson.getString("key");
-                    String user = dreamJson.getString("user");
+                    String username = dreamJson.getString("username");
                     String description = dreamJson.getString("description");
                     String date = dreamJson.getString("date");
 
-                    Dream dream = new Dream(key, user, description, date);
+                    Dream dream = new Dream(key, username, description, date);
 
                     // Add to ArrayList
                     dreams.add(dream);
