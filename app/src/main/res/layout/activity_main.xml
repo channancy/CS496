@@ -13,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/dreamListView"
-        android:layout_below="@+id/shareDreamButton"
         android:layout_marginTop="20dp"
         android:padding="10dp"/>
+
+    <!--android:layout_below="@+id/shareDreamButton"-->
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -26,16 +27,16 @@
         <!--android:layout_centerHorizontal="true"-->
         <!--android:textColor="@android:color/white"/>-->
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Share a Dream"
-        android:id="@+id/shareDreamButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="#40ffffff"
-        android:textColor="@android:color/white"/>
+    <!--<Button-->
+        <!--style="?android:attr/buttonStyleSmall"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Share a Dream"-->
+        <!--android:id="@+id/shareDreamButton"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:background="#40ffffff"-->
+        <!--android:textColor="@android:color/white"/>-->
 
 </RelativeLayout>

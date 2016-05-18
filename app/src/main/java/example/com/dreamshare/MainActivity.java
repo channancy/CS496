@@ -9,7 +9,6 @@ package example.com.dreamshare;
  */
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,8 +24,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import example.com.dreamshare.adapters.DreamAdapter;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -72,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("http://dreamshare-1300.appspot.com/dreams")
+                    .url("http://dreamshare2-1314.appspot.com/dream")
                     .build();
 
             try {
@@ -108,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     dreamJson = jsonArray.getJSONObject(i);
 
-                    String name = dreamJson.getString("name");
-                    int birth_year = year - dreamJson.getInt("birth_year");
-                    String location = dreamJson.getString("location");
-                    String description = dreamJson.getString("dream");
-                    Dream dream = new Dream(name, birth_year, location, description);
+                    String user = dreamJson.getString("user");
+                    String description = dreamJson.getString("description");
+                    String date = dreamJson.getString("date");
+
+                    Dream dream = new Dream(user, description, date);
 
                     // Add to ArrayList
                     dreams.add(dream);
@@ -140,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Navigate to form to share dream
     // ButterKnife OnClick
-    @OnClick (R.id.shareDreamButton) void OnClick() {
-        Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-        startActivity(intent);
-    }
+//    @OnClick (R.id.shareDreamButton) void OnClick() {
+//        Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+//        startActivity(intent);
+//    }
 }

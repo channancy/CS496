@@ -1,4 +1,4 @@
-package example.com.dreamshare.adapters;
+package example.com.dreamshare;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,14 +9,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import example.com.dreamshare.Dream;
-import example.com.dreamshare.R;
-
 /**
  * Created by Nancy on 5/3/2016.
  * Source cited: https://github.com/codepath/android-custom-array-adapter-demo/blob/master/app/src/main/java/com/codepath/example/customadapterdemo/CustomUsersAdapter.java
  */
-public class DreamAdapter extends ArrayAdapter<Dream> {
+public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickListener {
     public DreamAdapter(Context context, ArrayList<Dream> dreams) {
         super(context, 0, dreams);
     }
@@ -25,22 +22,32 @@ public class DreamAdapter extends ArrayAdapter<Dream> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         Dream dream = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.dream_list_item, parent, false);
         }
         // Lookup view for data population
-        TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
-        TextView tvBirthYear = (TextView) convertView.findViewById(R.id.tvBirthYear);
-        TextView tvLocation = (TextView) convertView.findViewById(R.id.tvLocation);
-        TextView tvDreamDescription = (TextView) convertView.findViewById(R.id.tvDreamDescription);
+        TextView tvUser = (TextView) convertView.findViewById(R.id.tvUser);
+        tvUser.setOnClickListener(this);
+
+        TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+        TextView tvDate = (TextView) convertView.findViewById(R.id.tvDate);
+
         // Populate the data into the template view using the data object
-        tvName.setText(dream.getName());
-        tvBirthYear.setText(dream.getBirthYear() + "");
-        tvLocation.setText(dream.getLocation());
-        tvDreamDescription.setText(dream.getDreamDescription());
+        tvUser.setText(dream.getUser());
+        tvDescription.setText(dream.getDescription());
+        tvDate.setText(dream.getDate());
 
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.tvUser:
+                //
+        }
     }
 }

@@ -4,47 +4,37 @@ package example.com.dreamshare;
  * Created by Nancy on 5/3/2016.
  */
 public class Dream {
-    private String mName;
-    private int mBirthYear;
-    private String mLocation;
-    private String mDreamDescription;
+    private String mUser;
+    private String mDescription;
+    private String mDate;
 
-    public Dream(String name, int birthYear, String location, String dreamDescription) {
-        mName = name;
-        mBirthYear = birthYear;
-        mLocation = location;
-        mDreamDescription = dreamDescription;
+    public Dream(String user, String description, String date) {
+        mUser = user;
+        mDescription = description;
+        mDate = date;
     }
 
-    public String getName() {
-        return mName;
+    public String getUser() {
+        return mUser;
     }
 
-    public void setName(String name) {
-        mName = name;
+    public void setUser(String user) {
+        mUser = user;
     }
 
-    public int getBirthYear() {
-        return mBirthYear;
+    public String getDescription() {
+        return mDescription;
     }
 
-    public void setBirthYear(int birthYear) {
-        mBirthYear = birthYear;
+    public void setDescription(String description) {
+        mDescription = description;
     }
 
-    public String getLocation() {
-        return mLocation;
+    public String getDate() {
+        return mDate;
     }
 
-    public void setLocation(String location) {
-        mLocation = location;
-    }
-
-    public String getDreamDescription() {
-        return mDreamDescription;
-    }
-
-    public void setDreamDescription(String dreamDescription) {
-        mDreamDescription = dreamDescription;
+    public void setDate(String date) {
+        mDate = date;
     }
 }

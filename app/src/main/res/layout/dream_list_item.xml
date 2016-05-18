@@ -1,60 +1,94 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    >
+              android:layout_height="match_parent">
+
+
     <TextView
-        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="@android:color/white"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="John S."
+        android:id="@+id/tvUser"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
-        android:id="@+id/tvComma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvName"
-        android:layout_toRightOf="@+id/tvName"
-        android:text=", "
-        android:textColor="@android:color/white"/>
-
-    <TextView
-        android:id="@+id/tvBirthYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Birth Year"
-        android:textColor="@android:color/white"
-        android:layout_toRightOf="@+id/tvComma"
-        android:layout_alignBaseline="@+id/tvComma"/>
-
-    <TextView
-        android:id="@+id/tvComma2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvBirthYear"
-        android:layout_toRightOf="@+id/tvBirthYear"
-        android:text=", "
-        android:textColor="@android:color/white"/>
-
-    <TextView
-        android:id="@+id/tvLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvComma2"
-        android:layout_toRightOf="@+id/tvComma2"
-        android:text="Location"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
-        android:id="@+id/tvDreamDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dream Description"
-        android:layout_below="@+id/tvName"
-        android:textColor="@android:color/white"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sail across the world!"
+        android:id="@+id/tvDescription"
+        android:layout_below="@+id/tvUser"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="2016-05-17"
+        android:id="@+id/tvDate"
+        android:layout_below="@+id/tvDescription"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="20dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/tvDate"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Profile"
+            android:id="@+id/tvProfile"
+            android:layout_below="@+id/tvDate"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="30"
+            android:contextClickable="false"
+            android:clickable="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Edit"
+            android:id="@+id/tvEdit"
+            android:layout_below="@+id/tvDate"
+            android:layout_toRightOf="@+id/tvProfile"
+            android:layout_toEndOf="@+id/tvProfile"
+            android:layout_weight="30"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Delete"
+            android:id="@+id/tvDelete"
+            android:layout_below="@+id/tvDate"
+            android:layout_toRightOf="@+id/tvEdit"
+            android:layout_toEndOf="@+id/tvEdit"
+            android:layout_weight="30"/>
+    </LinearLayout>
 
 </RelativeLayout>
