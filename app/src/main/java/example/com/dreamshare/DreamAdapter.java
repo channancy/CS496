@@ -2,7 +2,9 @@ package example.com.dreamshare;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -23,6 +24,8 @@ import java.util.ArrayList;
  */
 public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickListener {
 
+    // Context so we can work with MainActivity as needed
+    // (start MainActivity, display toast messages in MainActivity, etc)
     Context c;
 
     public DreamAdapter(Context context, ArrayList<Dream> dreams) {
@@ -39,6 +42,7 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.dream_list_item, parent, false);
         }
+
         // Lookup view for data population
         TextView tvUser = (TextView) convertView.findViewById(R.id.tvUser);
         TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
@@ -57,6 +61,8 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         tvEdit.setOnClickListener(this);
 
         TextView tvDelete = (TextView) convertView.findViewById(R.id.tvDelete);
+        // Set tag with database key for the dream
+        tvDelete.setTag(dream.getKey());
         tvDelete.setOnClickListener(this);
 
         // Return the completed view to render on screen
@@ -65,21 +71,33 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+
+        // Get tag with database key for the dream
+        String key;
+        key = (String) v.getTag();
+
+        // Check which textView was clicked
         switch(v.getId()) {
+
+            // Profile
             case R.id.tvProfile:
-                Toast.makeText(c, "Clicked Profile", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Profile Clicked", Toast.LENGTH_SHORT).show();
                 break;
+
+            // Edit
             case R.id.tvEdit:
-                Toast.makeText(c, "Clicked Edit", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Dream Edited", Toast.LENGTH_SHORT).show();
                 break;
+
+            // Delete
             case R.id.tvDelete:
-
-                DeleteTask deleteTask = new DeleteTask(c);
+                // Pass context and key
+                DeleteTask deleteTask = new DeleteTask(c, key);
                 deleteTask.execute();
-
-                Toast.makeText(c, "Clicked Delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Dream Deleted", Toast.LENGTH_SHORT).show();
 
                 break;
+
             default:
                 break;
         }
@@ -89,10 +107,12 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
     private class DeleteTask extends AsyncTask<Void, Void, Void> {
 
         private Context mContext;
+        private String mKey;
         private ProgressDialog mProgressDialog;
 
-        public DeleteTask(Context context) {
+        public DeleteTask(Context context, String key) {
             mContext = context;
+            mKey = key;
         }
 
         // Show loading message
@@ -107,35 +127,31 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
             mProgressDialog.show();
         }
 
+        // Make DELETE request
         @Override
         protected Void doInBackground(Void... params) {
+
+            Log.v("DreamAdapter", "doInBackground dream key:" + mKey);
+            String urlStr = "http://dreamshare2-1314.appspot.com/dream/" + mKey;
+
             URL url = null;
+            HttpURLConnection httpCon = null;
+
             try {
-                url = new URL("http://dreamshare2-1314.appspot.com/dream/5644406560391168");
+                url = new URL(urlStr);
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-            HttpURLConnection httpCon = null;
+
             try {
                 httpCon = (HttpURLConnection) url.openConnection();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            httpCon.setDoOutput(true);
-            httpCon.setRequestProperty(
-                    "Content-Type", "application/x-www-form-urlencoded" );
-            try {
+                httpCon.setDoOutput(true);
+                httpCon.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 httpCon.setRequestMethod("DELETE");
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            }
-            try {
                 httpCon.connect();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
                 httpCon.getInputStream();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -148,6 +164,9 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
             // Close loading message
             mProgressDialog.dismiss();
 
+            // Start MainActivity to see results of delete
+            Intent intent = new Intent(c, MainActivity.class);
+            c.startActivity(intent);
         }
     }
 }

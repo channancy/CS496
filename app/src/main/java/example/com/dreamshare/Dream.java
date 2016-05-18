@@ -4,14 +4,24 @@ package example.com.dreamshare;
  * Created by Nancy on 5/3/2016.
  */
 public class Dream {
+    private String mKey;
     private String mUser;
     private String mDescription;
     private String mDate;
 
-    public Dream(String user, String description, String date) {
+    public Dream(String key, String user, String description, String date) {
+        mKey = key;
         mUser = user;
         mDescription = description;
         mDate = date;
+    }
+
+    public String getKey() {
+        return mKey;
+    }
+
+    public void setKey(String key) {
+        mKey = key;
     }
 
     public String getUser() {
