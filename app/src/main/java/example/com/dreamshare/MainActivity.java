@@ -21,7 +21,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     public String jsonData;
     public ArrayList<Dream> dreams = new ArrayList<Dream>();
-    public int year = Calendar.getInstance().get(Calendar.YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
