@@ -55,9 +55,13 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
 
         // Lookup view for buttons and set listeners
         TextView tvProfile = (TextView) convertView.findViewById(R.id.tvProfile);
+        // Set tag with database key for the user
+        tvProfile.setTag(dream.getUser_key());
         tvProfile.setOnClickListener(this);
 
         TextView tvEdit = (TextView) convertView.findViewById(R.id.tvEdit);
+        // Set tag with database key for the dream
+        tvEdit.setTag(dream.getKey());
         tvEdit.setOnClickListener(this);
 
         TextView tvDelete = (TextView) convertView.findViewById(R.id.tvDelete);
@@ -72,7 +76,7 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-        // Get tag with database key for the dream
+        // Get tag with database key for the dream/user
         String key;
         key = (String) v.getTag();
 
@@ -81,12 +85,12 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
 
             // Profile
             case R.id.tvProfile:
-                Toast.makeText(c, "Profile Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Viewing Profile for User:" + key, Toast.LENGTH_SHORT).show();
                 break;
 
             // Edit
             case R.id.tvEdit:
-                Toast.makeText(c, "Dream Edited", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Editing Dream:" + key, Toast.LENGTH_SHORT).show();
                 break;
 
             // Delete

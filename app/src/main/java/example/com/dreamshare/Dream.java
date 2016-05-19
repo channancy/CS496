@@ -5,12 +5,14 @@ package example.com.dreamshare;
  */
 public class Dream {
     private String mKey;
+    private String mUser_key;
     private String mUsername;
     private String mDescription;
     private String mDate;
 
-    public Dream(String key, String username, String description, String date) {
+    public Dream(String key, String user_key, String username, String description, String date) {
         mKey = key;
+        mUser_key = user_key;
         mUsername = username;
         mDescription = description;
         mDate = date;
@@ -22,6 +24,14 @@ public class Dream {
 
     public void setKey(String key) {
         mKey = key;
+    }
+
+    public String getUser_key() {
+        return mUser_key;
+    }
+
+    public void setUser_key(String user_key) {
+        mUser_key = user_key;
     }
 
     public String getUsername() {

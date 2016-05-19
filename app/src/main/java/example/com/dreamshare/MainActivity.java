@@ -105,11 +105,12 @@ public class MainActivity extends AppCompatActivity {
                     dreamJson = jsonArray.getJSONObject(i);
 
                     String key = dreamJson.getString("key");
+                    String user_key = dreamJson.getString("user");
                     String username = dreamJson.getString("username");
                     String description = dreamJson.getString("description");
                     String date = dreamJson.getString("date");
 
-                    Dream dream = new Dream(key, username, description, date);
+                    Dream dream = new Dream(key, user_key, username, description, date);
 
                     // Add to ArrayList
                     dreams.add(dream);
