@@ -40,7 +40,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Main2Activity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class PostDream extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private EditText name;
     private EditText birth_year;
@@ -58,7 +58,7 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_post_dream);
 
         // ButterKnife generates code to perform view look-ups
         // and configure listeners into methods, etc.
@@ -192,7 +192,7 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
         if (namePost.length() == 0 || birth_year_Post.length() == 0
                 || locationPost.length() == 0 || descriptionPost.length() == 0) {
 
-            Toast.makeText(Main2Activity.this, "All fields are required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PostDream.this, "All fields are required.", Toast.LENGTH_SHORT).show();
             valid = false;
         }
 
@@ -202,7 +202,7 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
             // Arbitrary cut off at 120 years old
             if (year - Integer.parseInt(birth_year_Post) > 120 || year - Integer.parseInt(birth_year_Post) < 0) {
 
-                Toast.makeText(Main2Activity.this, "Please enter a valid birth year.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PostDream.this, "Please enter a valid birth year.", Toast.LENGTH_SHORT).show();
                 valid = false;
             }
         }
@@ -212,7 +212,7 @@ public class Main2Activity extends AppCompatActivity implements GoogleApiClient.
             try {
                 run();
 
-                Toast.makeText(Main2Activity.this, "Your dream has been shared!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PostDream.this, "Your dream has been shared!", Toast.LENGTH_SHORT).show();
 
                 // Clear fields
                 name.setText("");

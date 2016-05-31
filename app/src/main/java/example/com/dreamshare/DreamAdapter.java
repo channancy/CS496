@@ -24,8 +24,8 @@ import java.util.ArrayList;
  */
 public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickListener {
 
-    // Context so we can work with MainActivity as needed
-    // (start MainActivity, display toast messages in MainActivity, etc)
+    // Context so we can work with GetDreams as needed
+    // (start GetDreams, display toast messages in GetDreams, etc)
     Context c;
 
     public DreamAdapter(Context context, ArrayList<Dream> dreams) {
@@ -168,8 +168,8 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
             // Close loading message
             mProgressDialog.dismiss();
 
-            // Start MainActivity to see results of delete
-            Intent intent = new Intent(c, MainActivity.class);
+            // Start GetDreams to see results of delete
+            Intent intent = new Intent(c, GetDreams.class);
             c.startActivity(intent);
         }
     }

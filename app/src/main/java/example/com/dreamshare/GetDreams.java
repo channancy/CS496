@@ -26,16 +26,16 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class GetDreams extends AppCompatActivity {
 
-    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = GetDreams.class.getSimpleName();
     public String jsonData;
     public ArrayList<Dream> dreams = new ArrayList<Dream>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_get_dreams);
 
         // ButterKnife generates code to perform view look-ups
         // and configure listeners into methods, etc.
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mProgressDialog = new ProgressDialog(MainActivity.this);
+            mProgressDialog = new ProgressDialog(GetDreams.this);
             mProgressDialog.setMessage("Loading dreams...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.setCancelable(true);
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     dreams.add(dream);
 
                     // Custom adapter for displaying list of dreams
-                    DreamAdapter adapter = new DreamAdapter(MainActivity.this, dreams);
+                    DreamAdapter adapter = new DreamAdapter(GetDreams.this, dreams);
                     ListView listView = (ListView) findViewById(R.id.dreamListView);
                     listView.setAdapter(adapter);
                 }
@@ -130,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         // Call in onStart() so that list is re-populated with current data
-        // whenever we return to this activity (example: hitting back button from Main2Activity)
+        // whenever we return to this activity (example: hitting back button from PostDream)
         new JSONParse().execute();
     }
 
     // Navigate to form to share dream
     // ButterKnife OnClick
 //    @OnClick (R.id.shareDreamButton) void OnClick() {
-//        Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+//        Intent intent = new Intent(GetDreams.this, PostDream.class);
 //        startActivity(intent);
 //    }
 }
