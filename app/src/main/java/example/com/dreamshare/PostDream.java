@@ -27,7 +27,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -87,7 +86,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
         // email
         email = user.get(SessionManager.KEY_EMAIL);
 
-        Log.v("Email is", email);
+        Log.v("email is", email);
 
         postUrl = "http://dreamshare3-1328.appspot.com/dreams/email/" + email;
 
@@ -174,9 +173,13 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
     OkHttpClient client = new OkHttpClient();
 
     public void run() throws Exception {
+        Log.v("locationText is", locationText);
+        Log.v("descriptionText is", descriptionText);
+        Log.v("postUrl is", postUrl);
+
         RequestBody formBody = new FormBody.Builder()
                 .add("location", locationText)
-                .add("dream", descriptionText)
+                .add("description", descriptionText)
                 .build();
         Request request = new Request.Builder()
                 .url(postUrl)
@@ -202,8 +205,6 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
     // ButterKnife OnClick
     @OnClick(R.id.submitButton)
     void OnClick() {
-
-        int year = Calendar.getInstance().get(Calendar.YEAR);
         boolean valid = true;
 
         // Get user input
