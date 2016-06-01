@@ -42,6 +42,9 @@ import okhttp3.Response;
 
 public class PostDream extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
+    // TAG for debugging with Log
+    private static final String TAG = PostDream.class.getSimpleName();
+
     private EditText name;
     private EditText birth_year;
     private EditText location;
@@ -125,10 +128,10 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
                 addresses = geocoder.getFromLocation(lat, lon, 1);
                 String city = addresses.get(0).getLocality();
                 location.setText(city);
-                Log.v("Main2", city);
+                Log.v(TAG, city);
 
             } catch (IOException e) {
-                Log.d("Main2", "Error onConnected", e);
+                Log.d(TAG, "Error onConnected", e);
             }
         }
     }
@@ -223,7 +226,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
                 name.requestFocus();
 
             } catch (Exception e) {
-                Log.v("Main2", "Error OnClick", e);
+                Log.v(TAG, "Error OnClick", e);
             }
         }
     }

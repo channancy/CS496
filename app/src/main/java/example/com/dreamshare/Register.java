@@ -21,11 +21,14 @@ import okhttp3.Response;
 
 public class Register extends AppCompatActivity {
 
+    // TAG for debugging with Log
+    private static final String TAG = Register.class.getSimpleName();
+
     // ButterKnife find and cast view
     @BindView(R.id.firstName) public EditText fname;
     @BindView(R.id.lastName) public EditText lname;
     @BindView(R.id.registerEmail) public EditText email;
-    @BindView(R.id.registerPassword) public EditText password;
+    @BindView(R.id.loginPassword) public EditText password;
     @BindView(R.id.confirmPassword) public EditText confirmPassword;
 
     private String fnameText;
@@ -117,11 +120,11 @@ public class Register extends AppCompatActivity {
                 email.setText("");
                 password.setText("");
                 confirmPassword.setText("");
-                // Move cursor back to name field
+                // Move cursor back to first name field
                 fname.requestFocus();
 
             } catch (Exception e) {
-                Log.v("Main2", "Error OnClick", e);
+                Log.v(TAG, "Error OnClick", e);
             }
         }
     }

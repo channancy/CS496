@@ -28,7 +28,8 @@ import okhttp3.Response;
 
 public class GetDreams extends AppCompatActivity {
 
-    public static final String TAG = GetDreams.class.getSimpleName();
+    // TAG for debugging with Log
+    private static final String TAG = GetDreams.class.getSimpleName();
     public String jsonData;
     public ArrayList<Dream> dreams = new ArrayList<Dream>();
 
@@ -76,7 +77,7 @@ public class GetDreams extends AppCompatActivity {
                 jsonData = response.body().string();
 
             } catch (IOException e) {
-                Log.v("Main", "Error doInBackground", e);
+                Log.v(TAG, "Error doInBackground", e);
             }
 
             return null;
@@ -120,7 +121,7 @@ public class GetDreams extends AppCompatActivity {
                 }
 
             } catch (JSONException e) {
-                Log.v("Main", "Error onPostExecute", e);
+                Log.v(TAG, "Error onPostExecute", e);
             }
         }
     }
