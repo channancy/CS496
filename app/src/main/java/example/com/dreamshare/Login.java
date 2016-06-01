@@ -98,9 +98,11 @@ public class Login extends AppCompatActivity {
             try {
                 run();
 
+                // If password does not match database
                 if (!passwordText.equals(correctPassword)) {
                     Toast.makeText(this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
                 }
+                // Correct password
                 else {
                     Intent intent = new Intent(this, GetDreams.class);
                     startActivity(intent);
