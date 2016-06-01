@@ -108,7 +108,10 @@ public class GetDreams extends AppCompatActivity {
 
                     String key = dreamJson.getString("key");
                     String user_key = dreamJson.getString("user");
-                    String username = dreamJson.getString("username");
+                    String userFname = dreamJson.getString("userFname");
+                    String userLname = dreamJson.getString("userLname");
+                    String userLinitial = userLname.substring(0, 1);
+                    String username = userFname + " " + userLinitial + ".";
                     String description = dreamJson.getString("description");
                     String date = dreamJson.getString("date");
 

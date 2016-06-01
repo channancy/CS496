@@ -28,6 +28,7 @@ import com.google.android.gms.location.LocationServices;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,6 +47,12 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
     // TAG for debugging with Log
     private static final String TAG = PostDream.class.getSimpleName();
 
+    // Session Manager Class
+    private SessionManager session;
+    private String name;
+    private String email;
+    private String postUrl;
+
     private TextView location;
     private EditText description;
 
@@ -60,10 +67,29 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_dream);
 
+        // Session class instance
+        session = new SessionManager(getApplicationContext());
+
+        // Check if user is logged in
+        session.checkLogin();
+
         // ButterKnife generates code to perform view look-ups
         // and configure listeners into methods, etc.
         // https://github.com/JakeWharton/butterknife
         ButterKnife.bind(this);
+
+        // Get user data from session
+        HashMap<String, String> user = session.getUserDetails();
+
+        // name
+        name = user.get(SessionManager.KEY_NAME);
+
+        // email
+        email = user.get(SessionManager.KEY_EMAIL);
+
+        Log.v("Email is", email);
+
+        postUrl = "http://dreamshare3-1328.appspot.com/dreams/email/" + email;
 
         // Find views without ButterKnife for the sake of practice
         location = (TextView) findViewById(R.id.locationField);
@@ -153,7 +179,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
                 .add("dream", descriptionText)
                 .build();
         Request request = new Request.Builder()
-                .url("http://dreamshare3-1328.appspot.com/dreams/user/")
+                .url(postUrl)
                 .post(formBody)
                 .build();
 
@@ -198,8 +224,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
 
                 Toast.makeText(PostDream.this, "Your dream has been shared!", Toast.LENGTH_SHORT).show();
 
-                // Clear fields
-                location.setText("");
+                // Clear field
                 description.setText("");
 
             } catch (Exception e) {

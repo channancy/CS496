@@ -33,13 +33,22 @@ public class Login extends AppCompatActivity {
     private String passwordText;
     private String getUrl;
     private String jsonData;
+    private String userFname;
+    private String userLname;
+    private String userEmail;
     private String correctPassword;
+
+    // Session Manager Class
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        // Session Manager
+        session = new SessionManager(getApplicationContext());
     }
 
     // Make GET request
@@ -68,6 +77,9 @@ public class Login extends AppCompatActivity {
                 JSONObject userObject = null;
                 try {
                     userObject = new JSONObject(jsonData);
+                    userFname = userObject.getString("fname");
+                    userLname = userObject.getString("lname");
+                    userEmail = userObject.getString("email");
                     correctPassword = userObject.getString("password");
 
                 } catch (JSONException e) {
@@ -104,6 +116,8 @@ public class Login extends AppCompatActivity {
                 }
                 // Correct password
                 else {
+                    session.createLoginSession(userFname, userEmail);
+
                     Intent intent = new Intent(this, GetDreams.class);
                     startActivity(intent);
                 }
