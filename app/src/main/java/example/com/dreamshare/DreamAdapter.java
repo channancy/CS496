@@ -136,7 +136,7 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         protected Void doInBackground(Void... params) {
 
             Log.v("DreamAdapter", "doInBackground dream key:" + mKey);
-            String urlStr = "http://dreamshare2-1314.appspot.com/dream/" + mKey;
+            String urlStr = "http://dreamshare3-1328.appspot.com/dreams/" + mKey;
 
             URL url = null;
             HttpURLConnection httpCon = null;
