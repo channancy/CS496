@@ -19,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -45,15 +46,11 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
     // TAG for debugging with Log
     private static final String TAG = PostDream.class.getSimpleName();
 
-    private EditText name;
-    private EditText birth_year;
-    private EditText location;
+    private TextView location;
     private EditText description;
 
-    private String namePost;
-    private String birth_year_Post;
-    private String locationPost;
-    private String descriptionPost;
+    private String locationText;
+    private String descriptionText;
 
     private GoogleApiClient googleApiClient;
     private static final int PERMISSION_ACCESS_FINE_LOCATION = 1;
@@ -69,9 +66,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
         ButterKnife.bind(this);
 
         // Find views without ButterKnife for the sake of practice
-        name = (EditText) findViewById(R.id.nameField);
-        birth_year = (EditText) findViewById(R.id.birthYearField);
-        location = (EditText) findViewById(R.id.locationField);
+        location = (TextView) findViewById(R.id.locationField);
         description = (EditText) findViewById(R.id.dreamDescriptionField);
 
         googleApiClient = new GoogleApiClient.Builder(this, this, this).addApi(LocationServices.API).build();
@@ -127,8 +122,10 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
             try {
                 addresses = geocoder.getFromLocation(lat, lon, 1);
                 String city = addresses.get(0).getLocality();
-                location.setText(city);
-                Log.v(TAG, city);
+                String state = addresses.get(0).getAdminArea();
+                String area = city + ", " + state;
+                location.setText(area);
+                Log.v(TAG, area);
 
             } catch (IOException e) {
                 Log.d(TAG, "Error onConnected", e);
@@ -152,13 +149,11 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
 
     public void run() throws Exception {
         RequestBody formBody = new FormBody.Builder()
-                .add("name", namePost)
-                .add("birth_year", birth_year_Post)
-                .add("location", locationPost)
-                .add("dream", descriptionPost)
+                .add("location", locationText)
+                .add("dream", descriptionText)
                 .build();
         Request request = new Request.Builder()
-                .url("http://dreamshare-1300.appspot.com/dreams")
+                .url("http://dreamshare3-1328.appspot.com/dreams/user/")
                 .post(formBody)
                 .build();
 
@@ -186,28 +181,14 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
         boolean valid = true;
 
         // Get user input
-        namePost = name.getText().toString();
-        birth_year_Post = birth_year.getText().toString();
-        locationPost = location.getText().toString();
-        descriptionPost = description.getText().toString();
+        locationText = location.getText().toString();
+        descriptionText = description.getText().toString();
 
         // Check if user left any fields blank
-        if (namePost.length() == 0 || birth_year_Post.length() == 0
-                || locationPost.length() == 0 || descriptionPost.length() == 0) {
+        if (locationText.length() == 0 || descriptionText.length() == 0) {
 
             Toast.makeText(PostDream.this, "All fields are required.", Toast.LENGTH_SHORT).show();
             valid = false;
-        }
-
-        // Check if user entered a valid birth year
-        if (birth_year_Post.length() > 0) {
-
-            // Arbitrary cut off at 120 years old
-            if (year - Integer.parseInt(birth_year_Post) > 120 || year - Integer.parseInt(birth_year_Post) < 0) {
-
-                Toast.makeText(PostDream.this, "Please enter a valid birth year.", Toast.LENGTH_SHORT).show();
-                valid = false;
-            }
         }
 
         // Run POST request if user input is valid
@@ -218,12 +199,8 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
                 Toast.makeText(PostDream.this, "Your dream has been shared!", Toast.LENGTH_SHORT).show();
 
                 // Clear fields
-                name.setText("");
-                birth_year.setText("");
                 location.setText("");
                 description.setText("");
-                // Move cursor back to name field
-                name.requestFocus();
 
             } catch (Exception e) {
                 Log.v(TAG, "Error OnClick", e);

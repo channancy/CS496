@@ -13,10 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/dreamListView"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"/>
-
-    <!--android:layout_below="@+id/shareDreamButton"-->
+        android:padding="10dp"
+        android:layout_below="@+id/publicButton"/>
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -27,16 +25,39 @@
         <!--android:layout_centerHorizontal="true"-->
         <!--android:textColor="@android:color/white"/>-->
 
-    <!--<Button-->
-        <!--style="?android:attr/buttonStyleSmall"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="Share a Dream"-->
-        <!--android:id="@+id/shareDreamButton"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:background="#40ffffff"-->
-        <!--android:textColor="@android:color/white"/>-->
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Public"
+        android:id="@+id/publicButton"
+        android:background="#40ffffff"
+        android:textColor="@android:color/white"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/shareDreamButton"
+        android:layout_alignTop="@+id/shareDreamButton"
+        android:layout_alignBottom="@+id/shareDreamButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="40sp"
+        />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mine"
+        android:id="@+id/MineButton"
+        android:background="#40ffffff"
+        android:textColor="@android:color/white"
+        android:layout_above="@+id/dreamListView"
+        android:layout_toRightOf="@+id/publicButton"
+        android:layout_toEndOf="@+id/publicButton"/>
 
 </RelativeLayout>

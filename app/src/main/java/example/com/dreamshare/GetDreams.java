@@ -9,6 +9,7 @@ package example.com.dreamshare;
  */
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -41,7 +44,7 @@ public class GetDreams extends AppCompatActivity {
         // ButterKnife generates code to perform view look-ups
         // and configure listeners into methods, etc.
         // https://github.com/JakeWharton/butterknife
-//        ButterKnife.bind(this);
+        ButterKnife.bind(this);
     }
 
     // AsyncTask (do not perform networking operation on the main thread)
@@ -67,7 +70,7 @@ public class GetDreams extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("http://dreamshare2-1314.appspot.com/dream")
+                    .url("http://dreamshare3-1328.appspot.com/dreams")
                     .build();
 
             try {
@@ -137,8 +140,8 @@ public class GetDreams extends AppCompatActivity {
 
     // Navigate to form to share dream
     // ButterKnife OnClick
-//    @OnClick (R.id.shareDreamButton) void OnClick() {
-//        Intent intent = new Intent(GetDreams.this, PostDream.class);
-//        startActivity(intent);
-//    }
+    @OnClick(R.id.shareDreamButton) void OnClick() {
+        Intent intent = new Intent(this, PostDream.class);
+        startActivity(intent);
+    }
 }
