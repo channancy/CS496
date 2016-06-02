@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class Account extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class Account extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+        ButterKnife.bind(this);
 
         // Session Manager
         session = new SessionManager(getApplicationContext());
