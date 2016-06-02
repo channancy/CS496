@@ -21,9 +21,9 @@ public class Start extends AppCompatActivity {
         // Session class instance
         session = new SessionManager(getApplicationContext());
 
-        // If logged in, skip Login/Register and go to GetDreams
+        // If logged in, skip Login/Register and go to GetPublicDreams
         if (session.isLoggedIn()) {
-            Intent intent = new Intent(this, GetDreams.class);
+            Intent intent = new Intent(this, GetPublicDreams.class);
             startActivity(intent);
         }
     }
@@ -32,10 +32,10 @@ public class Start extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        // Call in onStart() so that if logged in, skip Login/Register and go to GetDreams
+        // Call in onStart() so that if logged in, skip Login/Register and go to GetPublicDreams
         // whenever we return to this activity (example: hitting back button)
         if (session.isLoggedIn()) {
-            Intent intent = new Intent(this, GetDreams.class);
+            Intent intent = new Intent(this, GetPublicDreams.class);
             startActivity(intent);
         }
     }

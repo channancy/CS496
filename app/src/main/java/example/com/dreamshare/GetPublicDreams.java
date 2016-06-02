@@ -33,17 +33,17 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetDreams extends AppCompatActivity {
+public class GetPublicDreams extends AppCompatActivity {
 
     // TAG for debugging with Log
-    private static final String TAG = GetDreams.class.getSimpleName();
+    private static final String TAG = GetPublicDreams.class.getSimpleName();
     public String jsonData;
     public ArrayList<Dream> dreams = new ArrayList<Dream>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_dreams);
+        setContentView(R.layout.activity_get_public_dreams);
 
         // ButterKnife generates code to perform view look-ups
         // and configure listeners into methods, etc.
@@ -61,7 +61,7 @@ public class GetDreams extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mProgressDialog = new ProgressDialog(GetDreams.this);
+            mProgressDialog = new ProgressDialog(GetPublicDreams.this);
             mProgressDialog.setMessage("Loading dreams...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.setCancelable(true);
@@ -138,7 +138,7 @@ public class GetDreams extends AppCompatActivity {
                     dreams.add(dream);
 
                     // Custom adapter for displaying list of dreams
-                    DreamAdapter adapter = new DreamAdapter(GetDreams.this, dreams);
+                    DreamAdapter adapter = new DreamAdapter(GetPublicDreams.this, dreams);
                     ListView listView = (ListView) findViewById(R.id.dreamListView);
                     listView.setAdapter(adapter);
                 }

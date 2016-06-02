@@ -27,8 +27,8 @@ import java.util.ArrayList;
  */
 public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickListener {
 
-    // Context so we can work with GetDreams as needed
-    // (start GetDreams, display toast messages in GetDreams, etc)
+    // Context so we can work with GetPublicDreams as needed
+    // (start GetPublicDreams, display toast messages in GetPublicDreams, etc)
     Context c;
 
     public DreamAdapter(Context context, ArrayList<Dream> dreams) {
@@ -175,8 +175,8 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
             // Close loading message
             mProgressDialog.dismiss();
 
-            // Start GetDreams to see results of delete
-            Intent intent = new Intent(c, GetDreams.class);
+            // Start GetPublicDreams to see results of delete
+            Intent intent = new Intent(c, GetPublicDreams.class);
             c.startActivity(intent);
         }
     }

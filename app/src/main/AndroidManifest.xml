@@ -25,7 +25,7 @@
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name=".GetDreams"
+            android:name=".GetPublicDreams"
             android:label="@string/title_activity_get_dreams" >
         </activity>
         <activity

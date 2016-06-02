@@ -131,8 +131,8 @@ public class Register extends AppCompatActivity {
                     // Login and set session variables
                     session.createLoginSession(fnameText, lnameText, emailText);
 
-                    // Redirect to GetDreams
-                    Intent intent = new Intent(Register.this, GetDreams.class);
+                    // Redirect to GetPublicDreams
+                    Intent intent = new Intent(Register.this, GetPublicDreams.class);
                     startActivity(intent);
 
                 } catch (Exception e) {

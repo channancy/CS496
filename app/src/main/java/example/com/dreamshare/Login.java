@@ -100,8 +100,8 @@ public class Login extends AppCompatActivity {
                     // Set session variables
                     session.createLoginSession(userFname, userLname, userEmail);
 
-                    // Redirect to GetDreams
-                    Intent intent = new Intent(Login.this, GetDreams.class);
+                    // Redirect to GetPublicDreams
+                    Intent intent = new Intent(Login.this, GetPublicDreams.class);
                     startActivity(intent);
                 }
 
