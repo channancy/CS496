@@ -9,7 +9,6 @@ package example.com.dreamshare;
  * http://stackoverflow.com/questions/4772425/change-date-format-in-a-java-string
  */
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,18 +53,18 @@ public class GetPublicDreams extends AppCompatActivity {
     // AsyncTask (do not perform networking operation on the main thread)
     private class JSONParse extends AsyncTask<Void, Void, Void> {
 
-        private ProgressDialog mProgressDialog;
+//        private ProgressDialog mProgressDialog;
 
         // Show loading message
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mProgressDialog = new ProgressDialog(GetPublicDreams.this);
-            mProgressDialog.setMessage("Loading dreams...");
-            mProgressDialog.setIndeterminate(false);
-            mProgressDialog.setCancelable(true);
-            mProgressDialog.show();
+//            mProgressDialog = new ProgressDialog(GetPublicDreams.this);
+//            mProgressDialog.setMessage("Loading dreams...");
+//            mProgressDialog.setIndeterminate(false);
+//            mProgressDialog.setCancelable(true);
+//            mProgressDialog.show();
         }
 
         // Make GET request and store JSON response
@@ -94,7 +93,7 @@ public class GetPublicDreams extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void param) {
             // Close loading message
-            mProgressDialog.dismiss();
+//            mProgressDialog.dismiss();
 
             JSONObject jsonObject = null;
             try {
@@ -168,6 +167,12 @@ public class GetPublicDreams extends AppCompatActivity {
 
     @OnClick(R.id.publicButton)
     void OnClickPublic() {
+        Intent intent = new Intent(this, GetPublicDreams.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.homeButton)
+    void OnClickHome() {
         Intent intent = new Intent(this, GetPublicDreams.class);
         startActivity(intent);
     }

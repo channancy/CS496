@@ -9,7 +9,6 @@ package example.com.dreamshare;
  * http://stackoverflow.com/questions/4772425/change-date-format-in-a-java-string
  */
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -40,6 +40,11 @@ public class GetMyDreams extends AppCompatActivity {
     public String jsonData;
     public ArrayList<Dream> dreams = new ArrayList<Dream>();
 
+    // SessionManager class
+    private SessionManager session;
+    private String email;
+    private String getUrl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,23 +54,39 @@ public class GetMyDreams extends AppCompatActivity {
         // and configure listeners into methods, etc.
         // https://github.com/JakeWharton/butterknife
         ButterKnife.bind(this);
+
+        // SessionManager class instance
+        session = new SessionManager(getApplicationContext());
+
+        // Check if user is logged in
+        session.checkLogin();
+
+        // Get user data from session
+        HashMap<String, String> user = session.getUserDetails();
+
+        // email
+        email = user.get(SessionManager.KEY_EMAIL);
+
+        Log.v("email is", email);
+
+        getUrl = "http://dreamshare3-1328.appspot.com/dreams/email/" + email;
     }
 
     // AsyncTask (do not perform networking operation on the main thread)
     private class JSONParse extends AsyncTask<Void, Void, Void> {
 
-        private ProgressDialog mProgressDialog;
+//        private ProgressDialog mProgressDialog;
 
         // Show loading message
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mProgressDialog = new ProgressDialog(GetMyDreams.this);
-            mProgressDialog.setMessage("Loading dreams...");
-            mProgressDialog.setIndeterminate(false);
-            mProgressDialog.setCancelable(true);
-            mProgressDialog.show();
+//            mProgressDialog = new ProgressDialog(GetMyDreams.this);
+//            mProgressDialog.setMessage("Loading dreams...");
+//            mProgressDialog.setIndeterminate(false);
+//            mProgressDialog.setCancelable(true);
+//            mProgressDialog.show();
         }
 
         // Make GET request and store JSON response
@@ -74,7 +95,7 @@ public class GetMyDreams extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("http://dreamshare3-1328.appspot.com/dreams")
+                    .url(getUrl)
                     .build();
 
             try {
@@ -94,7 +115,7 @@ public class GetMyDreams extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void param) {
             // Close loading message
-            mProgressDialog.dismiss();
+//            mProgressDialog.dismiss();
 
             JSONObject jsonObject = null;
             try {
@@ -168,6 +189,12 @@ public class GetMyDreams extends AppCompatActivity {
 
     @OnClick(R.id.publicButton)
     void OnClickPublic() {
+        Intent intent = new Intent(this, GetPublicDreams.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.homeButton)
+    void OnClickHome() {
         Intent intent = new Intent(this, GetPublicDreams.class);
         startActivity(intent);
     }
