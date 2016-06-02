@@ -119,6 +119,7 @@ public class GetDreams extends AppCompatActivity {
                     String description = dreamJson.getString("description");
                     String date = dreamJson.getString("date");
                     String dateFormatted = "";
+                    String location = dreamJson.getString("location");
 
                     // Format date
                     SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -131,7 +132,7 @@ public class GetDreams extends AppCompatActivity {
                         Log.v(TAG, "Error onPostExecute", e);
                     }
 
-                    Dream dream = new Dream(key, user_key, username, description, dateFormatted);
+                    Dream dream = new Dream(key, user_key, username, description, dateFormatted, location);
 
                     // Add to ArrayList
                     dreams.add(dream);

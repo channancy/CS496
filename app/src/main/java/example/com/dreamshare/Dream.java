@@ -9,13 +9,15 @@ public class Dream {
     private String mUsername;
     private String mDescription;
     private String mDate;
+    private String mLocation;
 
-    public Dream(String key, String user_key, String username, String description, String date) {
+    public Dream(String key, String user_key, String username, String description, String date, String location) {
         mKey = key;
         mUser_key = user_key;
         mUsername = username;
         mDescription = description;
         mDate = date;
+        mLocation = location;
     }
 
     public String getKey() {
@@ -56,5 +58,13 @@ public class Dream {
 
     public void setDate(String date) {
         mDate = date;
+    }
+
+    public String getLocation() {
+        return mLocation;
+    }
+
+    public void setLocation(String location) {
+        mLocation = location;
     }
 }
