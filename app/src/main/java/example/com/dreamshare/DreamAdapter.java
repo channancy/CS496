@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,17 +57,16 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         tvLocation.setText(dream.getLocation());
 
         // Lookup view for buttons and set listeners
-        TextView tvProfile = (TextView) convertView.findViewById(R.id.tvProfile);
         // Set tag with database key for the user
-        tvProfile.setTag(dream.getUser_key());
-        tvProfile.setOnClickListener(this);
+        tvUsername.setTag(dream.getUser_key());
+        tvUsername.setOnClickListener(this);
 
-        TextView tvEdit = (TextView) convertView.findViewById(R.id.tvEdit);
+        ImageView tvEdit = (ImageView) convertView.findViewById(R.id.tvEdit);
         // Set tag with database key for the dream
         tvEdit.setTag(dream.getKey());
         tvEdit.setOnClickListener(this);
 
-        TextView tvDelete = (TextView) convertView.findViewById(R.id.tvDelete);
+        ImageView tvDelete = (ImageView) convertView.findViewById(R.id.tvDelete);
         // Set tag with database key for the dream
         tvDelete.setTag(dream.getKey());
         tvDelete.setOnClickListener(this);
@@ -86,7 +86,7 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         switch(v.getId()) {
 
             // Profile
-            case R.id.tvProfile:
+            case R.id.tvUsername:
                 Toast.makeText(c, "Viewing Profile for User:" + key, Toast.LENGTH_SHORT).show();
                 break;
 

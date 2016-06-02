@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-                android:background="@android:color/black">
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,31 +47,18 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:layout_below="@+id/tvLocation"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:clickable="false"
+        android:layout_alignParentRight="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Profile"
-            android:id="@+id/tvProfile"
-            android:layout_below="@+id/tvDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_weight="1"
-            android:contextClickable="false"
-            android:clickable="false"
-            android:textColor="@android:color/white"
-            />
-
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -81,9 +68,10 @@
             android:layout_toRightOf="@+id/tvProfile"
             android:layout_toEndOf="@+id/tvProfile"
             android:layout_weight="1"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:src="@drawable/ic_mode_edit_white_48dp"/>
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -93,7 +81,8 @@
             android:layout_toRightOf="@+id/tvEdit"
             android:layout_toEndOf="@+id/tvEdit"
             android:layout_weight="1"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:src="@drawable/ic_delete_white_48dp"/>
     </LinearLayout>
 
     <TextView
