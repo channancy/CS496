@@ -137,7 +137,7 @@ public class GetPublicDreams extends AppCompatActivity {
                     dreams.add(dream);
 
                     // Custom adapter for displaying list of dreams
-                    DreamAdapter adapter = new DreamAdapter(GetPublicDreams.this, dreams);
+                    DreamAdapter adapter = new DreamAdapter(GetPublicDreams.this, dreams, 0);
                     ListView listView = (ListView) findViewById(R.id.dreamListView);
                     listView.setAdapter(adapter);
                 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,16 +25,21 @@ import java.util.ArrayList;
  * Sources cited:
  * https://github.com/codepath/android-custom-array-adapter-demo/blob/master/app/src/main/java/com/codepath/example/customadapterdemo/CustomUsersAdapter.java
  * http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
+ * http://stackoverflow.com/questions/5339941/android-how-to-use-getapplication-and-getapplicationcontext-from-non-activity
+ * http://stackoverflow.com/questions/4127725/how-can-i-remove-a-button-or-make-it-invisible-in-android
+ * http://stackoverflow.com/questions/12302172/setvisibilitygone-view-becomes-invisible-but-still-occupies-space
  */
 public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickListener {
 
     // Context so we can work with GetPublicDreams as needed
     // (start GetPublicDreams, display toast messages in GetPublicDreams, etc)
     Context c;
+    int m;
 
-    public DreamAdapter(Context context, ArrayList<Dream> dreams) {
+    public DreamAdapter(Context context, ArrayList<Dream> dreams, int mode) {
         super(context, 0, dreams);
         c = context;
+        m = mode;
     }
 
     @Override
@@ -63,15 +69,25 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         tvUsername.setTag(dream.getUser_key());
         tvUsername.setOnClickListener(this);
 
-        ImageView tvEdit = (ImageView) convertView.findViewById(R.id.tvEdit);
-        // Set tag with database key for the dream
-        tvEdit.setTag(dream.getKey());
-        tvEdit.setOnClickListener(this);
+        // Mode 0 = Public; Mode 1 = Mine
+        // If Mine, enable Edit and Delete
+        if (m == 1) {
+            ImageView tvEdit = (ImageView) convertView.findViewById(R.id.tvEdit);
+            ImageView tvDelete = (ImageView) convertView.findViewById(R.id.tvDelete);
 
-        ImageView tvDelete = (ImageView) convertView.findViewById(R.id.tvDelete);
-        // Set tag with database key for the dream
-        tvDelete.setTag(dream.getKey());
-        tvDelete.setOnClickListener(this);
+            // Set tag with database key for the dream
+            tvEdit.setTag(dream.getKey());
+            tvEdit.setOnClickListener(this);
+
+            // Set tag with database key for the dream
+            tvDelete.setTag(dream.getKey());
+            tvDelete.setOnClickListener(this);
+        }
+        // If Public, hide Edit and Delete
+        else {
+            LinearLayout layout_to_hide = (LinearLayout) convertView.findViewById(R.id.layout_to_hide);
+            layout_to_hide.setVisibility(View.GONE);
+        }
 
         // Return the completed view to render on screen
         return convertView;
