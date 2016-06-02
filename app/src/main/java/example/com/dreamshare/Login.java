@@ -25,8 +25,10 @@ public class Login extends AppCompatActivity {
     // TAG for debugging with Log
     private static final String TAG = Login.class.getSimpleName();
 
-    @BindView(R.id.loginEmail) public EditText email;
-    @BindView(R.id.loginPassword) public EditText password;
+    @BindView(R.id.loginEmail)
+    public EditText email;
+    @BindView(R.id.loginPassword)
+    public EditText password;
 
     private String emailText;
     private String passwordText;
@@ -108,7 +110,8 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    @OnClick (R.id.loginButton) void onClick() {
+    @OnClick(R.id.loginButton)
+    void onClick() {
         boolean valid = true;
 
         // Get user input

@@ -203,7 +203,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
     }
 
     // ButterKnife OnClick
-    @OnClick(R.id.submitButton)
+    @OnClick(R.id.editButton)
     void OnClick() {
         boolean valid = true;
 

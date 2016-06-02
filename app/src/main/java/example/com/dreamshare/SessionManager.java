@@ -36,14 +36,14 @@ public class SessionManager {
     public static final String KEY_EMAIL = "email";
 
     // Constructor
-    public SessionManager(Context context){
+    public SessionManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
     // Create login session
-    public void createLoginSession(String name, String email){
+    public void createLoginSession(String name, String email) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -58,7 +58,7 @@ public class SessionManager {
     }
 
     // Get stored session data
-    public HashMap<String, String> getUserDetails(){
+    public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         // user name
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
@@ -71,14 +71,14 @@ public class SessionManager {
     }
 
     // Get Login State
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         return pref.getBoolean(IS_LOGIN, false);
     }
 
     // Check if user is logged in
-    public void checkLogin(){
+    public void checkLogin() {
         // Check login status
-        if(!this.isLoggedIn()){
+        if (!this.isLoggedIn()) {
             // user is not logged in redirect him to Login Activity
             Intent i = new Intent(_context, Start.class);
             // Closing all the Activities
@@ -93,7 +93,7 @@ public class SessionManager {
     }
 
     // Clear session details
-    public void logoutUser(){
+    public void logoutUser() {
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();

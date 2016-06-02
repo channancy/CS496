@@ -25,11 +25,16 @@ public class Register extends AppCompatActivity {
     private static final String TAG = Register.class.getSimpleName();
 
     // ButterKnife find and cast view
-    @BindView(R.id.firstName) public EditText fname;
-    @BindView(R.id.lastName) public EditText lname;
-    @BindView(R.id.registerEmail) public EditText email;
-    @BindView(R.id.loginPassword) public EditText password;
-    @BindView(R.id.confirmPassword) public EditText confirmPassword;
+    @BindView(R.id.firstName)
+    public EditText fname;
+    @BindView(R.id.lastName)
+    public EditText lname;
+    @BindView(R.id.registerEmail)
+    public EditText email;
+    @BindView(R.id.loginPassword)
+    public EditText password;
+    @BindView(R.id.confirmPassword)
+    public EditText confirmPassword;
 
     private String fnameText;
     private String lnameText;

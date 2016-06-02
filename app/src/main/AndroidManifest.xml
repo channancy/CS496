@@ -39,6 +39,10 @@
             android:name=".Register"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name=".EditDream"
+            android:label="@string/title_activity_edit_dream" >
+        </activity>
     </application>
 
 </manifest>

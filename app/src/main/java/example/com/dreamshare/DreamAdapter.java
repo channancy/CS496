@@ -21,7 +21,9 @@ import java.util.ArrayList;
 
 /**
  * Created by Nancy on 5/3/2016.
- * Source cited: https://github.com/codepath/android-custom-array-adapter-demo/blob/master/app/src/main/java/com/codepath/example/customadapterdemo/CustomUsersAdapter.java
+ * Sources cited:
+ * https://github.com/codepath/android-custom-array-adapter-demo/blob/master/app/src/main/java/com/codepath/example/customadapterdemo/CustomUsersAdapter.java
+ * http://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-on-android
  */
 public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickListener {
 
@@ -83,7 +85,7 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
         key = (String) v.getTag();
 
         // Check which textView was clicked
-        switch(v.getId()) {
+        switch (v.getId()) {
 
             // Profile
             case R.id.tvUsername:
@@ -92,7 +94,10 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
 
             // Edit
             case R.id.tvEdit:
-                Toast.makeText(c, "Editing Dream:" + key, Toast.LENGTH_SHORT).show();
+                // Pass dream_key to EditDream activity
+                Intent intent = new Intent(c, EditDream.class);
+                intent.putExtra("dream_key", key);
+                c.startActivity(intent);
                 break;
 
             // Delete

@@ -160,7 +160,8 @@ public class GetDreams extends AppCompatActivity {
 
     // Navigate to form to share dream
     // ButterKnife OnClick
-    @OnClick(R.id.shareDreamButton) void OnClick() {
+    @OnClick(R.id.shareDreamButton)
+    void OnClick() {
         Intent intent = new Intent(this, PostDream.class);
         startActivity(intent);
     }
