@@ -48,7 +48,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
 
     // Session Manager Class
     private SessionManager session;
-    private String name;
+    private String fname;
     private String email;
     private String postUrl;
 
@@ -80,8 +80,8 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
         // Get user data from session
         HashMap<String, String> user = session.getUserDetails();
 
-        // name
-        name = user.get(SessionManager.KEY_NAME);
+        // first name
+        fname = user.get(SessionManager.KEY_FNAME);
 
         // email
         email = user.get(SessionManager.KEY_EMAIL);

@@ -24,13 +24,16 @@ public class SessionManager {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "AndroidHivePref";
+    private static final String PREF_NAME = "";
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
 
-    // User name (make variable public to access from outside)
-    public static final String KEY_NAME = "name";
+    // First name (make variable public to access from outside)
+    public static final String KEY_FNAME = "fname";
+
+    // Last name (make variable public to access from outside)
+    public static final String KEY_LNAME = "lname";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
@@ -43,12 +46,15 @@ public class SessionManager {
     }
 
     // Create login session
-    public void createLoginSession(String name, String email) {
+    public void createLoginSession(String fname, String lname, String email) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
-        // Storing name in pref
-        editor.putString(KEY_NAME, name);
+        // Storing first name in pref
+        editor.putString(KEY_FNAME, fname);
+
+        // Storing last name in pref
+        editor.putString(KEY_LNAME, lname);
 
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
@@ -60,8 +66,11 @@ public class SessionManager {
     // Get stored session data
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
-        // user name
-        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+        // user first name
+        user.put(KEY_FNAME, pref.getString(KEY_FNAME, null));
+
+        // user last name
+        user.put(KEY_LNAME, pref.getString(KEY_LNAME, null));
 
         // user email id
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
@@ -98,13 +107,14 @@ public class SessionManager {
         editor.clear();
         editor.commit();
 
-        // After logout redirect user to Loing Activity
+        // After logout redirect user to Start Activity
         Intent i = new Intent(_context, Start.class);
-        // Closing all the Activities
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        // Add new Flag to start new Activity
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        // Closing all the Activities
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//        // Add new Flag to start new Activity
+//        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         // Staring Login Activity
         _context.startActivity(i);

@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity {
                 // Correct password
                 else {
                     // Set session variables
-                    session.createLoginSession(userFname, userEmail);
+                    session.createLoginSession(userFname, userLname, userEmail);
 
                     // Redirect to GetDreams
                     Intent intent = new Intent(Login.this, GetDreams.class);

@@ -9,11 +9,23 @@ import butterknife.OnClick;
 
 public class Start extends AppCompatActivity {
 
+    // Session Manager Class
+    private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
+
+        // Session class instance
+        session = new SessionManager(getApplicationContext());
+
+        // If logged in, skip Login/Register and go to GetDreams
+        if (session.isLoggedIn()) {
+            Intent intent = new Intent(this, GetDreams.class);
+            startActivity(intent);
+        }
     }
 
     @OnClick(R.id.loginButton)

@@ -43,6 +43,10 @@
             android:name=".EditDream"
             android:label="@string/title_activity_edit_dream" >
         </activity>
+        <activity
+            android:name=".Account"
+            android:label="@string/title_activity_account" >
+        </activity>
     </application>
 
 </manifest>
