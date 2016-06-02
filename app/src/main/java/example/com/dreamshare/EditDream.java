@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,8 +15,12 @@ import java.io.IOException;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class EditDream extends AppCompatActivity {
@@ -24,8 +29,12 @@ public class EditDream extends AppCompatActivity {
     private static final String TAG = EditDream.class.getSimpleName();
 
     private String dream_key;
-    private String getUrl;
+    private String url;
     private String jsonData;
+    private String updatedDescription;
+
+    // Lookup view
+    private EditText etDescription = (EditText) findViewById(R.id.dreamDescriptionField);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +75,12 @@ public class EditDream extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
 
-            getUrl = "http://dreamshare3-1328.appspot.com/dreams/" + dream_key;
+            url = "http://dreamshare3-1328.appspot.com/dreams/" + dream_key;
 
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url(getUrl)
+                    .url(url)
                     .build();
 
             try {
@@ -98,8 +107,7 @@ public class EditDream extends AppCompatActivity {
                 dreamObject = new JSONObject(jsonData);
                 String description = dreamObject.getString("description");
 
-                // Lookup view and set text
-                EditText etDescription = (EditText) findViewById(R.id.dreamDescriptionField);
+                // Set text from database
                 etDescription.setText(description);
 
             } catch(JSONException e) {
@@ -108,8 +116,56 @@ public class EditDream extends AppCompatActivity {
         }
     }
 
+    // Make POST request
+    // OkHttp recipe: https://github.com/square/okhttp/blob/master/samples/guide/src/main/java/okhttp3/recipes/PostForm.java
+    public void updateDream() throws Exception {
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("description", updatedDescription)
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .put(formBody)
+                .build();
+
+        Call call = client.newCall(request);
+
+        // Use OkHttp's async method
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.v("Response was", response.body().string());
+            }
+        });
+    }
+
     @OnClick(R.id.editButton)
     void onClick() {
+        boolean valid = true;
 
+        // Get user input
+        updatedDescription = etDescription.getText().toString();
+
+        // Check if user left any fields blank
+        if (updatedDescription.length() == 0) {
+
+            Toast.makeText(EditDream.this, "Dream description cannot be blank.", Toast.LENGTH_SHORT).show();
+            valid = false;
+        }
+
+        if (valid == true) {
+            try {
+                // Make POST request using new user input
+                updateDream();
+            } catch (Exception e) {
+                Log.v(TAG, "Error OnClick", e);
+            }
+        }
     }
 }
