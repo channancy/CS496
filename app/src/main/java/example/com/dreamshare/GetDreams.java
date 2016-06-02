@@ -154,7 +154,7 @@ public class GetDreams extends AppCompatActivity {
         super.onStart();
 
         // Call in onStart() so that list is re-populated with current data
-        // whenever we return to this activity (example: hitting back button from PostDream)
+        // whenever we return to this activity (example: hitting back button)
         new JSONParse().execute();
     }
 

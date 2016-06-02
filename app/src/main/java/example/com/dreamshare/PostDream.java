@@ -46,7 +46,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
     // TAG for debugging with Log
     private static final String TAG = PostDream.class.getSimpleName();
 
-    // Session Manager Class
+    // SessionManager class
     private SessionManager session;
     private String fname;
     private String email;
@@ -66,7 +66,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_dream);
 
-        // Session class instance
+        // SessionManager class instance
         session = new SessionManager(getApplicationContext());
 
         // Check if user is logged in

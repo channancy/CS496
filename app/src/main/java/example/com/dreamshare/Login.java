@@ -25,6 +25,7 @@ public class Login extends AppCompatActivity {
     // TAG for debugging with Log
     private static final String TAG = Login.class.getSimpleName();
 
+    // ButterKnife find and cast views
     @BindView(R.id.loginEmail)
     public EditText email;
     @BindView(R.id.loginPassword)
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity {
     private String userEmail;
     private String correctPassword;
 
-    // Session Manager Class
+    // SessionManager class
     private SessionManager session;
 
     @Override
@@ -48,7 +49,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        // Session Manager
+        // SessionManager class instance
         session = new SessionManager(getApplicationContext());
     }
 

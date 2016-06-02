@@ -28,6 +28,18 @@ public class Start extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Call in onStart() so that if logged in, skip Login/Register and go to GetDreams
+        // whenever we return to this activity (example: hitting back button)
+        if (session.isLoggedIn()) {
+            Intent intent = new Intent(this, GetDreams.class);
+            startActivity(intent);
+        }
+    }
+
     @OnClick(R.id.loginButton)
     void OnClickLogin() {
         Intent intent = new Intent(this, Login.class);
