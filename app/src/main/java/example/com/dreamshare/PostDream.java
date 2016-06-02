@@ -223,7 +223,7 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
             try {
                 run();
 
-                Toast.makeText(PostDream.this, "Your dream has been shared!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Your dream has been shared!", Toast.LENGTH_SHORT).show();
 
                 // Clear field
                 description.setText("");

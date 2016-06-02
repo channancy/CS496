@@ -23,6 +23,11 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Sources cited:
+ * http://stackoverflow.com/questions/34886172/okhttp-put-example
+ */
+
 public class EditDream extends AppCompatActivity {
 
     // TAG for debugging with Log
@@ -33,8 +38,7 @@ public class EditDream extends AppCompatActivity {
     private String jsonData;
     private String updatedDescription;
 
-    // Lookup view
-    private EditText etDescription = (EditText) findViewById(R.id.dreamDescriptionField);
+    private EditText etDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,9 @@ public class EditDream extends AppCompatActivity {
         }
 
         Log.v(TAG, "Editing Dream:" + dream_key);
+
+        // Lookup view
+        etDescription = (EditText) findViewById(R.id.dreamDescriptionField);
 
         // Make GET request for dream description using data that was passed in
         new getDescription().execute();
@@ -116,8 +123,7 @@ public class EditDream extends AppCompatActivity {
         }
     }
 
-    // Make POST request
-    // OkHttp recipe: https://github.com/square/okhttp/blob/master/samples/guide/src/main/java/okhttp3/recipes/PostForm.java
+    // Make PUT request
     public void updateDream() throws Exception {
         OkHttpClient client = new OkHttpClient();
 
@@ -159,10 +165,14 @@ public class EditDream extends AppCompatActivity {
             valid = false;
         }
 
+        // Run PUT request if user input is valid
         if (valid == true) {
             try {
-                // Make POST request using new user input
+                // Make PUT request using new user input
                 updateDream();
+
+                Toast.makeText(this, "Your dream has been updated!", Toast.LENGTH_SHORT).show();
+
             } catch (Exception e) {
                 Log.v(TAG, "Error OnClick", e);
             }
