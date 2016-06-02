@@ -6,6 +6,7 @@ package example.com.dreamshare;
  * https://www.learn2crack.com/2013/10/android-asynctask-json-parsing-example.html
  * https://priyankacool10.wordpress.com/2014/03/30/how-to-use-asynctask-in-android/
  * http://alvinalexander.com/android/android-asynctask-void-void-void-null-parameters-signature
+ * http://stackoverflow.com/questions/4772425/change-date-format-in-a-java-string
  */
 
 import android.app.ProgressDialog;
@@ -21,7 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -114,8 +118,20 @@ public class GetDreams extends AppCompatActivity {
                     String username = userFname + " " + userLinitial + ".";
                     String description = dreamJson.getString("description");
                     String date = dreamJson.getString("date");
+                    String dateFormatted = "";
 
-                    Dream dream = new Dream(key, user_key, username, description, date);
+                    // Format date
+                    SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                    try {
+                        Date dateParsed = dt.parse(date);
+                        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
+                        dateFormatted = dt1.format(dateParsed);
+
+                    } catch (ParseException e) {
+                        Log.v(TAG, "Error onPostExecute", e);
+                    }
+
+                    Dream dream = new Dream(key, user_key, username, description, dateFormatted);
 
                     // Add to ArrayList
                     dreams.add(dream);
