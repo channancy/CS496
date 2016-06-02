@@ -11,4 +11,5 @@
     <string name="title_activity_register">Register</string>
     <string name="title_activity_edit_dream">EditDream</string>
     <string name="title_activity_account">Account</string>
+    <string name="title_activity_get_my_dreams">GetMyDreams</string>
 </resources>

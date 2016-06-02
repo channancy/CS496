@@ -33,10 +33,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetPublicDreams extends AppCompatActivity {
+public class GetMyDreams extends AppCompatActivity {
 
     // TAG for debugging with Log
-    private static final String TAG = GetPublicDreams.class.getSimpleName();
+    private static final String TAG = GetMyDreams.class.getSimpleName();
     public String jsonData;
     public ArrayList<Dream> dreams = new ArrayList<Dream>();
 
@@ -61,7 +61,7 @@ public class GetPublicDreams extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mProgressDialog = new ProgressDialog(GetPublicDreams.this);
+            mProgressDialog = new ProgressDialog(GetMyDreams.this);
             mProgressDialog.setMessage("Loading dreams...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.setCancelable(true);
@@ -138,7 +138,7 @@ public class GetPublicDreams extends AppCompatActivity {
                     dreams.add(dream);
 
                     // Custom adapter for displaying list of dreams
-                    DreamAdapter adapter = new DreamAdapter(GetPublicDreams.this, dreams);
+                    DreamAdapter adapter = new DreamAdapter(GetMyDreams.this, dreams);
                     ListView listView = (ListView) findViewById(R.id.dreamListView);
                     listView.setAdapter(adapter);
                 }

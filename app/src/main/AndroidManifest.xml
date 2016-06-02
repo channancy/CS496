@@ -47,6 +47,10 @@
             android:name=".Account"
             android:label="@string/title_activity_account" >
         </activity>
+        <activity
+            android:name=".GetMyDreams"
+            android:label="@string/title_activity_get_my_dreams" >
+        </activity>
     </application>
 
 </manifest>
