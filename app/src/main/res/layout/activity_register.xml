@@ -18,7 +18,8 @@
         android:hint="Email Address"
         android:layout_above="@+id/loginPassword"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/white"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:textColor="@android:color/white"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -39,7 +41,9 @@
         android:id="@+id/registerButton"
         android:layout_marginBottom="56dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:background="#40ffffff"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -50,7 +54,8 @@
         android:hint="First Name"
         android:layout_above="@+id/lastName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/white"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -61,7 +66,8 @@
         android:layout_above="@+id/registerEmail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Last Name"/>
+        android:hint="Last Name"
+        android:textColor="@android:color/white"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -71,6 +77,7 @@
         android:id="@+id/confirmPassword"
         android:hint="Confirm Password"
         android:layout_below="@+id/loginPassword"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"/>
 
 </RelativeLayout>

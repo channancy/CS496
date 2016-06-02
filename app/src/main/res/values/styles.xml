@@ -3,6 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
     </style>
+
+    <!--<style name="ButtonText" parent="@android:style/Widget.Button">-->
+        <!--<item name="android:background">"#40ffff"</item>-->
+    <!--</style>-->
 
 </resources>

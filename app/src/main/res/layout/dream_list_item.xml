@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,10 +66,11 @@
             android:layout_below="@+id/tvDate"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_weight="30"
+            android:layout_weight="1"
             android:contextClickable="false"
             android:clickable="false"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +81,7 @@
             android:layout_below="@+id/tvDate"
             android:layout_toRightOf="@+id/tvProfile"
             android:layout_toEndOf="@+id/tvProfile"
-            android:layout_weight="30"
+            android:layout_weight="1"
             android:textColor="@android:color/white"/>
 
         <TextView
@@ -91,7 +93,7 @@
             android:layout_below="@+id/tvDate"
             android:layout_toRightOf="@+id/tvEdit"
             android:layout_toEndOf="@+id/tvEdit"
-            android:layout_weight="30"
+            android:layout_weight="1"
             android:textColor="@android:color/white"/>
     </LinearLayout>
 
