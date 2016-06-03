@@ -28,7 +28,8 @@
         android:id="@+id/logoutButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="#40ffffff"/>
+        android:background="#40ffffff"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"

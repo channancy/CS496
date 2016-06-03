@@ -72,7 +72,8 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:layout_weight="1"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/white"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -84,7 +85,8 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:layout_weight="1"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/white"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -95,7 +97,8 @@
             android:background="#40ffffff"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 
 

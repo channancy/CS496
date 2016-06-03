@@ -19,7 +19,8 @@
         android:layout_above="@+id/registerButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/white"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -31,5 +32,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="64dp"
-        android:background="#40ffffff"/>
+        android:background="#40ffffff"
+        android:textColor="@android:color/white"/>
 </RelativeLayout>
