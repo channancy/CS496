@@ -159,6 +159,7 @@ public class GetMyDreams extends AppCompatActivity {
                     dreams.add(dream);
 
                     // Custom adapter for displaying list of dreams
+                    // Pass 0 for MINE view (can edit/delete)
                     DreamAdapter adapter = new DreamAdapter(GetMyDreams.this, dreams, 1);
                     ListView listView = (ListView) findViewById(R.id.dreamListView);
                     listView.setAdapter(adapter);
@@ -193,15 +194,21 @@ public class GetMyDreams extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.mineButton)
+    void OnClickMine() {
+        Intent intent = new Intent(this, GetMyDreams.class);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.homeButton)
     void OnClickHome() {
         Intent intent = new Intent(this, GetPublicDreams.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.mineButton)
-    void OnClickMine() {
-        Intent intent = new Intent(this, GetMyDreams.class);
+    @OnClick(R.id.profileButton)
+    void OnClickProfile() {
+        Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
 

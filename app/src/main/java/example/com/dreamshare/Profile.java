@@ -1,20 +1,12 @@
 package example.com.dreamshare;
 
-/**
- * Sources cited:
- * http://stackoverflow.com/questions/28221555/how-does-okhttp-get-json-string/29680883#29680883
- * https://www.learn2crack.com/2013/10/android-asynctask-json-parsing-example.html
- * https://priyankacool10.wordpress.com/2014/03/30/how-to-use-asynctask-in-android/
- * http://alvinalexander.com/android/android-asynctask-void-void-void-null-parameters-signature
- * http://stackoverflow.com/questions/4772425/change-date-format-in-a-java-string
- */
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,22 +25,64 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetPublicDreams extends AppCompatActivity {
+public class Profile extends AppCompatActivity {
 
     // TAG for debugging with Log
-    private static final String TAG = GetPublicDreams.class.getSimpleName();
+    private static final String TAG = Profile.class.getSimpleName();
     public String jsonData;
     public ArrayList<Dream> dreams = new ArrayList<Dream>();
+
+    private String user_key;
+    private String email;
+    private String getUrl;
+
+    // SessionManager class
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_public_dreams);
-
-        // ButterKnife generates code to perform view look-ups
-        // and configure listeners into methods, etc.
-        // https://github.com/JakeWharton/butterknife
+        setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
+
+        // SessionManager class instance
+        session = new SessionManager(getApplicationContext());
+
+        // Check if user is logged in
+        session.checkLogin();
+
+        // Get data that was passed to this activity
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            user_key = extras.getString("user_key");
+        }
+
+        // If no data was passed to this activity
+        // (user trying to access own profile)
+        // then make GET request using own email
+        if (user_key == null) {
+            // Get user data from session
+            HashMap<String, String> user = session.getUserDetails();
+
+            // email
+            email = user.get(SessionManager.KEY_EMAIL);
+
+            // Construct url
+            getUrl = "http://dreamshare3-1328.appspot.com/dreams/email/" + email;
+
+            Log.v("email is", email);
+        }
+        // Else user is trying to access another user's profile
+        // then make GET request using the other user's key
+        else {
+            // Construct url
+            getUrl = "http://dreamshare3-1328.appspot.com/dreams/users/" + user_key;
+
+            Log.v(TAG, "Viewing Profile:" + user_key);
+        }
+
+        // Make GET request for dreams
+        new JSONParse().execute();
     }
 
     // AsyncTask (do not perform networking operation on the main thread)
@@ -60,7 +95,7 @@ public class GetPublicDreams extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-//            mProgressDialog = new ProgressDialog(GetPublicDreams.this);
+//            mProgressDialog = new ProgressDialog(GetMyDreams.this);
 //            mProgressDialog.setMessage("Loading dreams...");
 //            mProgressDialog.setIndeterminate(false);
 //            mProgressDialog.setCancelable(true);
@@ -73,7 +108,7 @@ public class GetPublicDreams extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("http://dreamshare3-1328.appspot.com/dreams")
+                    .url(getUrl)
                     .build();
 
             try {
@@ -138,9 +173,13 @@ public class GetPublicDreams extends AppCompatActivity {
 
                     // Custom adapter for displaying list of dreams
                     // Pass 0 for PUBLIC view (no edit/delete)
-                    DreamAdapter adapter = new DreamAdapter(GetPublicDreams.this, dreams, 0);
+                    DreamAdapter adapter = new DreamAdapter(Profile.this, dreams, 0);
                     ListView listView = (ListView) findViewById(R.id.dreamListView);
                     listView.setAdapter(adapter);
+
+                    // Display name of user
+                    TextView name = (TextView) findViewById(R.id.tvName);
+                    name.setText(username);
                 }
 
             } catch (JSONException e) {
@@ -156,26 +195,6 @@ public class GetPublicDreams extends AppCompatActivity {
         // Call in onStart() so that list is re-populated with current data
         // whenever we return to this activity (example: hitting back button)
         new JSONParse().execute();
-    }
-
-    // Navigate to form to share dream
-    // ButterKnife OnClick
-    @OnClick(R.id.shareDreamButton)
-    void OnClickShare() {
-        Intent intent = new Intent(this, PostDream.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.publicButton)
-    void OnClickPublic() {
-        Intent intent = new Intent(this, GetPublicDreams.class);
-        startActivity(intent);
-    }
-
-    @OnClick(R.id.mineButton)
-    void OnClickMine() {
-        Intent intent = new Intent(this, GetMyDreams.class);
-        startActivity(intent);
     }
 
     @OnClick(R.id.homeButton)

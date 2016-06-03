@@ -105,15 +105,18 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
 
             // Profile
             case R.id.tvUsername:
-                Toast.makeText(c, "Viewing Profile for User:" + key, Toast.LENGTH_SHORT).show();
+                // Pass user_key to Profile activity
+                Intent userIntent = new Intent(c, Profile.class);
+                userIntent.putExtra("user_key", key);
+                c.startActivity(userIntent);
                 break;
 
             // Edit
             case R.id.tvEdit:
                 // Pass dream_key to EditDream activity
-                Intent intent = new Intent(c, EditDream.class);
-                intent.putExtra("dream_key", key);
-                c.startActivity(intent);
+                Intent dreamIntent = new Intent(c, EditDream.class);
+                dreamIntent.putExtra("dream_key", key);
+                c.startActivity(dreamIntent);
                 break;
 
             // Delete
