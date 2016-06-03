@@ -1,5 +1,9 @@
 package example.com.dreamshare;
 
+/**
+ * Image source: http://thinkspacecreative.com/wp-content/uploads/2015/02/Dream_Icon-01-e1453912253309.png
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
