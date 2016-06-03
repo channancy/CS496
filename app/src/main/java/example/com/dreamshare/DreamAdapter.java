@@ -28,6 +28,7 @@ import java.util.ArrayList;
  * http://stackoverflow.com/questions/5339941/android-how-to-use-getapplication-and-getapplicationcontext-from-non-activity
  * http://stackoverflow.com/questions/4127725/how-can-i-remove-a-button-or-make-it-invisible-in-android
  * http://stackoverflow.com/questions/12302172/setvisibilitygone-view-becomes-invisible-but-still-occupies-space
+ * http://stackoverflow.com/questions/10338615/sending-http-delete-request-in-android
  */
 public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickListener {
 
@@ -176,14 +177,15 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
 
             try {
                 httpCon = (HttpURLConnection) url.openConnection();
-                httpCon.setDoOutput(true);
+                // Remove this line because cannot add request body to delete
+//                httpCon.setDoOutput(true);
                 httpCon.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 httpCon.setRequestMethod("DELETE");
                 httpCon.connect();
                 httpCon.getInputStream();
 
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.v("DreamAdapter", "Error doInBackground:" + e);
             }
 
             return null;
@@ -195,7 +197,7 @@ public class DreamAdapter extends ArrayAdapter<Dream> implements View.OnClickLis
             mProgressDialog.dismiss();
 
             // Start GetPublicDreams to see results of delete
-            Intent intent = new Intent(c, GetPublicDreams.class);
+            Intent intent = new Intent(c, GetMyDreams.class);
             c.startActivity(intent);
         }
     }
