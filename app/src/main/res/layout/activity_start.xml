@@ -38,9 +38,20 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/dream_icon_thinkspacecreative"
+        android:id="@+id/startImage"
+        android:src="@drawable/dream_icon_thinkspacecreative_no_text"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="DreamShare"
+        android:id="@+id/startTitle"
+        android:layout_below="@+id/startImage"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"/>
+
 </RelativeLayout>
