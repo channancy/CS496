@@ -212,9 +212,16 @@ public class PostDream extends AppCompatActivity implements GoogleApiClient.Conn
         descriptionText = description.getText().toString();
 
         // Check if user left any fields blank
-        if (locationText.length() == 0 || descriptionText.length() == 0) {
+        if (locationText.length() == 0) {
 
-            Toast.makeText(PostDream.this, "All fields are required.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PostDream.this, "Location is required.", Toast.LENGTH_SHORT).show();
+            valid = false;
+        }
+
+        // Check if user left any fields blank
+        if (descriptionText.length() == 0) {
+
+            Toast.makeText(PostDream.this, "Dream description cannot be blank.", Toast.LENGTH_SHORT).show();
             valid = false;
         }
 
