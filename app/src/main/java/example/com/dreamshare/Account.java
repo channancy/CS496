@@ -26,6 +26,9 @@ public class Account extends AppCompatActivity {
         // Session Manager
         session = new SessionManager(getApplicationContext());
 
+        // Check if user is logged in
+        session.checkLogin();
+
         // Get user data from session
         HashMap<String, String> user = session.getUserDetails();
 
