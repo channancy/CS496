@@ -9,15 +9,14 @@
                 tools:context="example.com.dreamshare.EditDream"
                 android:background="@drawable/bg_gradient">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit"
-        android:id="@+id/editButton"
-        android:layout_alignParentBottom="true"
+        android:text="Edit your dream"
+        android:id="@+id/editTitle"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="#40ffffff"
+        android:textSize="40sp"
         android:textColor="@android:color/white"/>
 
     <EditText
@@ -32,14 +31,15 @@
         android:textColorHint="@android:color/white"
         android:layout_below="@+id/editTitle"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit your dream"
-        android:id="@+id/editTitle"
-        android:layout_alignParentTop="true"
+        android:text="Edit"
+        android:id="@+id/editButton"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textSize="40sp"
+        android:background="#40ffffff"
         android:textColor="@android:color/white"/>
 
 </RelativeLayout>
