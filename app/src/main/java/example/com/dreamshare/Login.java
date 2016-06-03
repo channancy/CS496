@@ -83,30 +83,37 @@ public class Login extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void param) {
 
-            JSONObject userObject = null;
-            try {
-                userObject = new JSONObject(jsonData);
-                userFname = userObject.getString("fname");
-                userLname = userObject.getString("lname");
-                userEmail = userObject.getString("email");
-                correctPassword = userObject.getString("password");
+            // If response is not empty, then email address is registered
+            if (!jsonData.isEmpty()) {
+                JSONObject userObject = null;
+                try {
+                    userObject = new JSONObject(jsonData);
+                    userFname = userObject.getString("fname");
+                    userLname = userObject.getString("lname");
+                    userEmail = userObject.getString("email");
+                    correctPassword = userObject.getString("password");
 
-                // If password does not match database
-                if (!passwordText.equals(correctPassword)) {
-                    Toast.makeText(Login.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
+                    // If password does not match database
+                    if (!passwordText.equals(correctPassword)) {
+                        Toast.makeText(Login.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
+                    }
+                    // Correct password
+                    else {
+                        // Set session variables
+                        session.createLoginSession(userFname, userLname, userEmail);
+
+                        // Redirect to GetPublicDreams
+                        Intent intent = new Intent(Login.this, GetPublicDreams.class);
+                        startActivity(intent);
+                    }
+
+                } catch (JSONException e) {
+                    Log.v(TAG, "Error onPostExecute", e);
                 }
-                // Correct password
-                else {
-                    // Set session variables
-                    session.createLoginSession(userFname, userLname, userEmail);
-
-                    // Redirect to GetPublicDreams
-                    Intent intent = new Intent(Login.this, GetPublicDreams.class);
-                    startActivity(intent);
-                }
-
-            } catch (JSONException e) {
-                Log.v(TAG, "Error onPostExecute", e);
+            }
+            // Email is not registered
+            else {
+                Toast.makeText(Login.this, "Email address is not registered.", Toast.LENGTH_SHORT).show();
             }
         }
     }
